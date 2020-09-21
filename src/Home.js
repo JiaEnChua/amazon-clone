@@ -13,12 +13,14 @@ function Home() {
         />
         <div className="home__row">
           <Product
+            id={"00001"}
             title={"The lean startup"}
             price={29.99}
             image={leanStartUp}
             rating={5}
           />
           <Product
+            id={"00002"}
             title={"The lean startup"}
             price={49.99}
             image={leanStartUp}
@@ -27,18 +29,21 @@ function Home() {
         </div>
         <div className="home__row">
           <Product
+            id={"00003"}
             title={"The lean startup"}
             price={29.99}
             image={leanStartUp}
             rating={5}
           />
           <Product
+            id={"00004"}
             title={"The lean startup"}
             price={29.99}
             image={leanStartUp}
             rating={4}
           />
           <Product
+            id={"00005"}
             title={"The lean startup"}
             price={29.99}
             image={leanStartUp}
@@ -47,6 +52,7 @@ function Home() {
         </div>
         <div className="home__row">
           <Product
+            id={"00006"}
             title={"The lean startup"}
             price={29.99}
             image={leanStartUp}
