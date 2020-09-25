@@ -17,8 +17,8 @@ function Orders() {
         .onSnapshot((snapshot) => {
           setOrders(
             snapshot.docs.map((item) => ({
+              ...item.data(),
               id: item.id,
-              data: item.data(),
             }))
           );
         });
@@ -35,7 +35,7 @@ function Orders() {
       <h1>Your Orders</h1>
       <div className="orders__order">
         {orders.length > 0 ? (
-          orders.map((order) => <Order order={order} />)
+          orders.map((order) => <Order order={order} key={order.id} />)
         ) : (
           <h2>Sorry, you do not have an order yet.</h2>
         )}

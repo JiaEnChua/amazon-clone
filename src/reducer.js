@@ -9,12 +9,13 @@ export const getBasketTotal = (basket) =>
 export const getAggregatedProducts = (basket) => {
   var holder = {};
   var obj = [];
-  basket.forEach(function (d) {
-    if (holder.hasOwnProperty(d.title)) {
-      holder[d.title].quantity = holder[d.title].quantity + 1;
+
+  basket.forEach(function (item) {
+    if (holder.hasOwnProperty(item.title)) {
+      holder[item.title].quantity = holder[item.title].quantity + 1;
     } else {
-      holder[d.title] = {
-        ...d,
+      holder[item.title] = {
+        ...item,
         quantity: 1,
       };
     }

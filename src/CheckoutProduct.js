@@ -31,8 +31,8 @@ function CheckoutProduct({
         <div className="checkoutProduct__rating">
           {Array(rating)
             .fill()
-            .map(() => (
-              <p>*</p>
+            .map((_, i) => (
+              <p key={i}>*</p>
             ))}
         </div>
         <p>Unit: {quantity}</p>
