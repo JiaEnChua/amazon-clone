@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Checkout.css";
 import Subtotal from "./Subtotal";
 import { useStateValue } from "./StateProvider";
 import CheckoutProduct from "./CheckoutProduct";
+import { getAggregatedProducts } from "./reducer";
 
 function Checkout() {
   const [{ basket, user }, dispatch] = useStateValue();
+  var aggregatedBasket = getAggregatedProducts(basket);
 
   return (
     <div className="checkout">
@@ -20,13 +22,14 @@ function Checkout() {
           <h2 className="checkout__title">Your shopping basket</h2>
 
           <p>
-            {basket.map((item) => (
+            {aggregatedBasket.map((item) => (
               <CheckoutProduct
                 id={item.id}
                 title={item.title}
                 image={item.image}
                 price={item.price}
                 rating={item.rating}
+                quantity={item.quantity}
               />
             ))}
           </p>

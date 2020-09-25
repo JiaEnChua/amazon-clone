@@ -6,6 +6,26 @@ export const initialState = {
 export const getBasketTotal = (basket) =>
   basket?.reduce((amount, item) => item.price + amount, 0);
 
+export const getAggregatedProducts = (basket) => {
+  var holder = {};
+  var obj = [];
+  basket.forEach(function (d) {
+    if (holder.hasOwnProperty(d.title)) {
+      holder[d.title].quantity = holder[d.title].quantity + 1;
+    } else {
+      holder[d.title] = {
+        ...d,
+        quantity: 1,
+      };
+    }
+  });
+
+  for (var prop in holder) {
+    obj.push(holder[prop]);
+  }
+  return obj;
+};
+
 const reducer = (state, action) => {
   console.log(action);
   switch (action.type) {
