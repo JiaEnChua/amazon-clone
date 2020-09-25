@@ -24,6 +24,22 @@ export const getAggregatedProducts = (basket) => {
   for (var prop in holder) {
     obj.push(holder[prop]);
   }
+
+  function compare(a, b) {
+    // Use toUpperCase() to ignore character casing
+    const bandA = a.title.toUpperCase();
+    const bandB = b.title.toUpperCase();
+
+    let comparison = 0;
+    if (bandA > bandB) {
+      comparison = 1;
+    } else if (bandA < bandB) {
+      comparison = -1;
+    }
+    return comparison;
+  }
+
+  obj.sort(compare);
   return obj;
 };
 

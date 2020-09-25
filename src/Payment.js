@@ -5,12 +5,14 @@ import CheckoutProduct from "./CheckoutProduct";
 import { Link, useHistory } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
-import { getBasketTotal } from "./reducer";
+import { getBasketTotal, getAggregatedProducts } from "./reducer";
 import axios from "./axios";
 import { db } from "./firebase";
 
 function Payment() {
   const [{ basket, user }, dispatch] = useStateValue();
+  var aggregatedBasket = getAggregatedProducts(basket);
+
   const history = useHistory();
 
   const stripe = useStripe();
@@ -105,13 +107,14 @@ function Payment() {
             <h3>Review items and delivery</h3>
           </div>
           <div className="payment__items">
-            {basket.map((item) => (
+            {aggregatedBasket.map((item) => (
               <CheckoutProduct
                 id={item.id}
                 title={item.title}
                 image={item.image}
                 price={item.price}
                 rating={item.rating}
+                quantity={item.quantity}
               />
             ))}
           </div>
