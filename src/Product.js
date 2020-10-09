@@ -3,7 +3,7 @@ import "./Product.css";
 import { useStateValue } from "./StateProvider";
 
 function Product({ id, title, price, image, rating }) {
-  const [{ basket }, dispatch] = useStateValue();
+  const [state, dispatch] = useStateValue();
 
   const addToBasket = () => {
     dispatch({
@@ -16,6 +16,14 @@ function Product({ id, title, price, image, rating }) {
         rating: rating,
       },
     });
+    dispatch({
+      type: "ADD_NOTIF",
+      notif: {
+        id: id,
+        title: title,
+      },
+    });
+    console.log("Added basket");
   };
 
   return (

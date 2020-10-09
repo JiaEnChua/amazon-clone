@@ -1,5 +1,6 @@
 export const initialState = {
   basket: [],
+  notif: [],
 };
 
 //Selector
@@ -79,6 +80,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         basket: [],
+      };
+
+    case "ADD_NOTIF":
+      return {
+        ...state,
+        notif: [...state.notif, action.notif],
       };
     default:
       return state;

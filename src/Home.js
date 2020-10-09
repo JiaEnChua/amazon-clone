@@ -1,12 +1,23 @@
-import React from "react";
+import React, { Fragment } from "react";
 import "./Home.css";
 import Product from "./Product";
 import leanStartUp from "./pictures/lean-start-up.png";
+import { useStateValue } from "./StateProvider";
 
 function Home() {
+  const [{ notif }, dispatch] = useStateValue();
+
   return (
     <div className="home">
       <div className="home__container">
+        <div className="home__containerNotifs">
+          {notif?.map((item) => (
+            <div className="home__containerNotif">
+              {item?.title} been added!
+            </div>
+          ))}
+        </div>
+
         <img
           src="https://images-na.ssl-images-amazon.com/images/G/01/digital/video/merch/2019/Other/RB-1934_SVOD_DXGY_5dollar/Amazon_GW_DesktopTallHero_RB-1934_SVOD_DXGY_5dollar_1500x600._CB420640874_.jpg"
           className="home__image"
