@@ -11,11 +11,13 @@ function Home() {
     <div className="home">
       <div className="home__container">
         <div className="home__containerNotifs">
-          {notif?.map((item) => (
-            <div className="home__containerNotif">
-              {item?.title} been added!
-            </div>
-          ))}
+          <div className="home__containerNotifsSticky">
+            {notif?.map((item) => (
+              <div className="home__containerNotif">
+                {item?.title} been added!
+              </div>
+            ))}
+          </div>
         </div>
 
         <img

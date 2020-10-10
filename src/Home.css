@@ -2,20 +2,30 @@
   display: flex;
   justify-content: center;
   margin: 0px auto;
+  position: relative; /*make home__containerNotifs height all the way down */
+  width: 100%;
+}
+
+.home__container {
   max-width: 1500px;
 }
 
 .home__containerNotifs {
   position: absolute;
-  z-index: 20;
   right: 0;
   margin-right: 10px;
+  z-index: 20;
+  height: 100%;
+}
+
+.home__containerNotifsSticky {
+  position: sticky;
+  top: 80px;
 }
 
 .home__containerNotif {
   height: 80px;
   width: 300px;
-  border: none;
   border-radius: 4px;
   box-shadow: 1px 1px 5px;
   display: flex;
