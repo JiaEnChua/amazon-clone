@@ -7,7 +7,7 @@
 
 .home__containerNotifs {
   position: absolute;
-  z-index: 1;
+  z-index: 20;
   right: 0;
   margin-right: 10px;
 }
@@ -23,17 +23,30 @@
   padding: 10px;
   margin-top: 20px;
   background-color: white;
+  animation: notifPopOut 2s forwards;
+}
+
+@keyframes notifPopOut {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 .home__image {
   width: 100%;
-  z-index: -1;
+  z-index: -10;
   margin-bottom: -150px;
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 }
 
 .home__row {
   display: flex;
-  z-index: 1;
+  z-index: 0;
   margin: 0px 5px;
 }
