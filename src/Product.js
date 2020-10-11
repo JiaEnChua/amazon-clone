@@ -23,7 +23,6 @@ function Product({ id, title, price, image, rating }) {
         title: title,
       },
     });
-    console.log("Added basket");
   };
 
   return (

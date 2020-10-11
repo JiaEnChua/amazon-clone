@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { useEffect } from "react";
 import "./Home.css";
 import Product from "./Product";
 import leanStartUp from "./pictures/lean-start-up.png";
@@ -6,6 +6,7 @@ import { useStateValue } from "./StateProvider";
 
 function Home() {
   const [{ notif }, dispatch] = useStateValue();
+  // console.log("Notif >>> ", notif);
 
   return (
     <div className="home">

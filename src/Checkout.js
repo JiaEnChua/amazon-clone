@@ -18,12 +18,13 @@ function Checkout() {
           alt="bannerAd"
         />
         <div className="checkout__body">
-          <h3>Hello, {user?.email}</h3>
+          <h3 className="checkout__greeting">Hello, {user?.email}</h3>
           <h2 className="checkout__title">Your shopping basket</h2>
 
-          <p>
+          <div>
             {aggregatedBasket.map((item) => (
               <CheckoutProduct
+                key={item.id}
                 id={item.id}
                 title={item.title}
                 image={item.image}
@@ -32,7 +33,7 @@ function Checkout() {
                 quantity={item.quantity}
               />
             ))}
-          </p>
+          </div>
         </div>
       </div>
       <div className="checkout__right">

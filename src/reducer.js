@@ -3,6 +3,8 @@ export const initialState = {
   notif: [],
 };
 
+export const notifDuration = 2;
+
 //Selector
 export const getBasketTotal = (basket) =>
   basket?.reduce((amount, item) => item.price + amount, 0);
@@ -83,10 +85,27 @@ const reducer = (state, action) => {
       };
 
     case "ADD_NOTIF":
+      // if (state.notif.length >= 4) {
+      //   state.notif.length = 0;
+      // }
       return {
         ...state,
         notif: [...state.notif, action.notif],
+        lastClicked: new Date(),
       };
+
+    case "EMPTY_NOTIF":
+      return {
+        ...state,
+        notif: [],
+      };
+
+    case "POPHEAD_NOTIF":
+      return {
+        ...state,
+        notif: state.notif.splice(0, 1),
+      };
+
     default:
       return state;
   }

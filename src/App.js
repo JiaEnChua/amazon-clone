@@ -11,13 +11,29 @@ import Payment from "./Payment";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Orders from "./Orders";
+import { notifDuration } from "./reducer";
 
 const promise = loadStripe(
   "pk_test_51HTaVRDXbNxJfZo5gJBv456RqhmS2wGRTRAsSu5r6NIo1QGQo7OdhlqJLG5By8KEouLGM9NlyUeQzZagCdkEYRla00oePwfGWs"
 );
 
 function App() {
-  const [state, dispatch] = useStateValue();
+  const [{ notif, lastClicked }, dispatch] = useStateValue();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (
+        notif.length > 0 &&
+        (new Date() - lastClicked) / 1000 >= notifDuration
+      ) {
+        dispatch({
+          type: "EMPTY_NOTIF",
+        });
+      }
+    }, notifDuration * 1000);
+    return () => clearInterval(interval);
+  }, [lastClicked, notif]);
+
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {

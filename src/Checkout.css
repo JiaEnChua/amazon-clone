@@ -14,3 +14,7 @@
   padding: 10px;
   border-bottom: 1px solid lightgray;
 }
+
+.checkout__greeting {
+  margin: 10px 0;
+}
