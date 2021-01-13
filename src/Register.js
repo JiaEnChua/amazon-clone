@@ -1,37 +1,39 @@
 import React, { useState } from 'react';
-import './Login.css';
+import './Register.css';
 import { auth } from './firebase';
 import { useHistory, Link } from 'react-router-dom';
 
-function Login() {
+function Register() {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const signIn = (event) => {
+  const register = (event) => {
     event.preventDefault();
-    //Firebase Login
+    //Firebase Register
     auth
-      .signInWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(email, password)
       .then((auth) => {
-        history.push('/');
+        //Successfully created an account
+        console.log(auth);
+        if (auth) {
+          history.push('./');
+        }
       })
       .catch((error) => alert(error.message));
-    setEmail('');
-    setPassword('');
   };
 
   return (
-    <div className='login'>
+    <div className='register'>
       <Link to='/'>
         <img
           src='https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg'
-          className='login__logo'
+          className='register__logo'
         />
       </Link>
 
-      <div className='login__container'>
-        <h1>Sign in</h1>
+      <div className='register__container'>
+        <h1>Register</h1>
         <form>
           <h5>E-mail</h5>
           <input
@@ -46,27 +48,17 @@ function Login() {
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
-
-          <button
-            className='login__signInButton'
-            type='submit'
-            onClick={signIn}
-          >
-            Sign in
-          </button>
         </form>
         <p>
           By continuing, you agree to Amazon FAKE Clone Conditions of Use and
           Privacy Notice.
         </p>
-        <Link to='/register'>
-          <button className='login__registerButton'>
-            Create you Amazon Account
-          </button>
-        </Link>
+        <button className='register__Button' onClick={register}>
+          Register
+        </button>
       </div>
     </div>
   );
 }
 
-export default Login;
+export default Register;
